@@ -1,0 +1,24 @@
+<?php
+/* @var $block Sga\OrderChangeStatus\Block\Adminhtml\Order\View\Tab\Status */
+
+$logs = $block->getLogs();
+
+if (count($logs) === 0) :
+?>
+    <?= __('there is no log') ?>
+<?php else : ?>
+    <ul class="note-list">
+    <?php foreach ($logs as $log) : ?>
+        <li>
+            <strong><?php echo $block->formatDate($log->getCreatedAt(), \IntlDateFormatter::MEDIUM, true) ?></strong>
+            <span class="separator">|</span>
+            <?php echo $log->getUser() ?><span class="separator">|</span>
+            <a href="#" onclick="$('change_<?php echo $log->getId() ?>').toggle()">
+                <span title="<?php echo $log->getOldState() ?>"><?php echo $log->getOldStatus() ?></span>
+                =&gt; <span title="<?php echo $log->getNewState() ?>"><?php echo $log->getNewStatus() ?></span>
+            </a>
+            <p id="change_<?php echo $log->getId() ?>" style="display:none"><?php echo str_replace("\n", '<br/>', $log->getStackTrace()) ?></p>
+        </li>
+    <?php endforeach ?>
+    </ul>
+<?php endif ?>

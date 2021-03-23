@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sga_orderchangestatus_log" resource="default" engine="innodb" comment="ORDERCHANGESTATUS log">
+        <column xsi:type="int" name="log_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Order Id" />
+        <column xsi:type="varchar" name="old_state" length="255" nullable="false" comment="Old State" />
+        <column xsi:type="varchar" name="new_state" length="255" nullable="false" comment="New State" />
+        <column xsi:type="varchar" name="old_status" length="255" nullable="false" comment="Old Status" />
+        <column xsi:type="varchar" name="new_status" length="255" nullable="false" comment="New Status" />
+        <column xsi:type="varchar" name="user" length="255" nullable="false" comment="User" />
+        <column xsi:type="mediumtext" name="stack_trace" nullable="false" comment="Stack Trace" />
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="log_id"/>
+        </constraint>
+    </table>
+</schema>

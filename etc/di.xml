@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Sga\OrderChangeStatus\Api\Data\LogInterface" type="Sga\OrderChangeStatus\Model\Log" />
+    <preference for="Sga\OrderChangeStatus\Api\LogRepositoryInterface" type="Sga\OrderChangeStatus\Model\LogRepository" />
+
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="sga_orderchangestatus_log" type="Sga\OrderChangeStatus\Plugin\Order"/>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Sga\OrderChangeStatus\Api\Data\LogInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">sga_orderchangestatus_log</item>
+                    <item name="identifierField" xsi:type="string">log_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="orderchangestatus_log_listing_data_source" xsi:type="string">Sga\OrderChangeStatus\Model\ResourceModel\Log\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Sga\OrderChangeStatus\Model\ResourceModel\Log\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sga_orderchangestatus_log</argument>
+            <argument name="eventPrefix" xsi:type="string">orderchangestatus_log_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">orderchangestatus_log_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Sga\OrderChangeStatus\Model\ResourceModel\Log</argument>
+        </arguments>
+    </type>
+</config>

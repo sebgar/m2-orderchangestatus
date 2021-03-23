@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales_order_tabs">
+            <block class="Sga\OrderChangeStatus\Block\Adminhtml\Order\View\Tab\Status" name="order_change_status" template="Sga_OrderChangeStatus::order/view/tab/status.phtml" />
+            <action method="addTab">
+                <argument name="name" xsi:type="string">order_change_status</argument>
+                <argument name="block" xsi:type="string">order_change_status</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>
