@@ -15,13 +15,11 @@ class Status extends \Magento\Sales\Block\Adminhtml\Order\AbstractOrder implemen
         \Magento\Framework\Registry $registry,
         \Magento\Sales\Helper\Admin $adminHelper,
         LogCollection $logCollection,
-        array $data = [],
-        ?ShippingHelper $shippingHelper = null,
-        ?TaxHelper $taxHelper = null
+        array $data = []
     ){
         $this->_logCollection = $logCollection;
 
-        parent::__construct($context, $registry, $adminHelper, $data, $shippingHelper, $taxHelper);
+        parent::__construct($context, $registry, $adminHelper, $data);
     }
 
     public function getLogs()
